@@ -1,5 +1,12 @@
 <h1><%= @article.title %></h1>
 
+<p>
+  Tags:
+  <% @article.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+</p>
+
 <p><%= @article.body %></p>
 
 <h3>Comments (<%= @article.comments.size %>)</h3>
@@ -11,8 +18,10 @@
 
 <%= link_to "<< Back to Articles List", articles_path %>
 
-<%= link_to "Delete Article", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %>
+<%-# add method to change route verb from GET to DELETE -%>
 
-<%= link_to "edit", edit_article_path(@article) %>
+<%= link_to "Delete Article", article_path(@article), method: :delete, data: {confirm: "Are you sure you want to delete this article?"} %>
 
+<%= link_to "Edit", edit_article_path(@article) %>
+		
 
